@@ -3,107 +3,370 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Anepower · Platforms</title>
-<meta name="description" content="Quick access to the four Anepower platforms: official website, global projects, data insight and C&I storage showcase.">
-<meta name="theme-color" content="#F5F7F8">
+<title>Anepower · Platform Portal</title>
+<meta name="description" content="Anepower platform portal. Safe Energy Everywhere — grid-forming solar–diesel–storage microgrids. Quick links to INSIGHT, GLOBAL, FCG and anepower.com.">
+<meta name="theme-color" content="#F5F7F5">
 <link rel="preload" href="/fonts/sora-700.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%2313293B'/%3E%3Cpath d='M18 5 L9 18 H15 L13 27 L23 13 H17 Z' fill='%2349B9C6'/%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230D1B1E'/%3E%3Cpath d='M18 5 L9 18 H15 L13 27 L23 13 H17 Z' fill='%2334D399'/%3E%3C/svg%3E">
 <style>
   @font-face{font-family:"Sora";font-weight:600;font-display:swap;src:url(/fonts/sora-600.woff2) format("woff2")}
   @font-face{font-family:"Sora";font-weight:700;font-display:swap;src:url(/fonts/sora-700.woff2) format("woff2")}
   :root{
-    --bg:#F5F7F8;--surface:#FFFFFF;--ink:#142D3D;--muted:#657985;--soft:#82939B;
-    --line:#E0E7EA;--line-strong:#C9D6DC;--blue:#337EA6;--teal:#258F8D;--amber:#B2783B;
+    --bg:#F4F6F4;--surface:#fff;--ink:#0D1B1E;--muted:#5C6C70;--dim:#8A989B;
+    --line:#E2E8E5;--line-2:#D3DCD8;
+    --night:#08171A;--night-2:#0E272B;
     --display:"Sora",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
     --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,"Helvetica Neue",Arial,sans-serif;
     --mono:"SF Mono","JetBrains Mono","Roboto Mono",Menlo,Consolas,monospace;
   }
-  *{box-sizing:border-box;margin:0;padding:0}
+  *{margin:0;padding:0;box-sizing:border-box}
   html{-webkit-text-size-adjust:100%}
-  body{min-height:100vh;display:flex;flex-direction:column;background:var(--bg);color:var(--ink);font:16px/1.5 var(--sans);-webkit-font-smoothing:antialiased}
-  body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(36rem 24rem at 92% 0%,rgba(73,185,198,.09),transparent 75%)}
+  body{
+    min-height:100vh;display:flex;flex-direction:column;
+    background:var(--bg);color:var(--ink);font-family:var(--sans);
+    font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
+    background:
+      radial-gradient(40% 45% at 92% 8%,rgba(20,184,166,.16),transparent 70%),
+      radial-gradient(32% 36% at 0% 70%,rgba(245,158,11,.10),transparent 70%);
+  }
   a{color:inherit;text-decoration:none}
-  .wrap{width:100%;max-width:1040px;margin:0 auto;padding:0 28px}
-  header{border-bottom:1px solid var(--line);background:rgba(255,255,255,.72)}
-  .header-row{height:70px;display:flex;align-items:center;justify-content:space-between;gap:20px}
-  .brand{font:700 22px/1 var(--display);letter-spacing:-.05em}
-  .header-meta{display:flex;align-items:center;gap:8px;color:var(--muted);font:600 10px/1 var(--mono);letter-spacing:.13em;text-transform:uppercase}
-  .header-meta::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--teal)}
-  main{flex:1;display:flex;flex-direction:column;justify-content:center;padding:62px 0 72px}
-  .intro{margin-bottom:28px}
-  .eyebrow{color:var(--teal);font:600 10px/1.4 var(--mono);letter-spacing:.16em;text-transform:uppercase}
-  h1{margin-top:10px;font:700 clamp(32px,4vw,44px)/1.12 var(--display);letter-spacing:-.05em}
-  .intro p:last-child{margin-top:9px;color:var(--muted);font-size:15px}
-  .portal-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
-  .portal{
-    --accent:var(--blue);position:relative;display:grid;grid-template-columns:38px minmax(0,1fr) 34px;align-items:center;gap:14px;
-    min-height:126px;padding:20px 21px;border:1px solid var(--line);border-radius:12px;background:rgba(255,255,255,.92);
-    box-shadow:0 8px 22px -20px rgba(20,45,61,.38);transition:transform .18s ease,border-color .18s ease,box-shadow .18s ease;
+  .wrap{width:100%;max-width:1200px;margin:0 auto;padding:0 20px}
+
+  /* header */
+  header .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;height:68px}
+  .logo{font-family:var(--display);font-weight:700;font-size:25px;letter-spacing:-.04em;line-height:1;
+    background:linear-gradient(95deg,#0D1B1E 0%,#0D1B1E 38%,#0F766E 70%,#10B981 100%);
+    -webkit-background-clip:text;background-clip:text;color:transparent;padding:4px 0}
+  .tagline{font-size:13px;color:var(--muted);display:flex;gap:8px;align-items:center}
+  .tagline i{width:6px;height:6px;border-radius:50%;background:var(--c)}
+
+  /* layout */
+  main{flex:1;display:flex;align-items:center}
+  .layout{display:grid;gap:32px;padding-top:40px;padding-bottom:40px}
+  .side{display:flex;flex-direction:column;min-width:0}
+
+  .eyebrow{font-size:12.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
+    background:linear-gradient(90deg,#F59E0B,#EF4444 45%,#10B981);-webkit-background-clip:text;background-clip:text;color:transparent}
+  h1{margin-top:12px;font-family:var(--display);font-size:clamp(28px,5vw,48px);font-weight:700;line-height:1.1;letter-spacing:-.035em;white-space:nowrap}
+  .lead{margin-top:12px;font-size:16.5px;color:var(--muted);max-width:32em}
+
+  /* portal list */
+  .list{display:grid;gap:12px;margin-top:28px}
+  .item{
+    position:relative;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:16px;
+    background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:14px 16px 14px 14px;
+    box-shadow:0 1px 2px rgba(13,27,30,.04),0 6px 18px -10px rgba(13,27,30,.14);
+    transition:transform .22s cubic-bezier(.22,1,.36,1),box-shadow .22s,border-color .22s;overflow:hidden;
   }
-  .portal::before{content:"";position:absolute;left:0;top:18px;bottom:18px;width:2px;border-radius:2px;background:var(--accent);opacity:.7}
-  .portal:hover{transform:translateY(-2px);border-color:var(--line-strong);box-shadow:0 14px 28px -22px rgba(20,45,61,.38)}
-  .portal:focus-visible{outline:3px solid rgba(51,126,166,.25);outline-offset:3px}
-  .portal-index{align-self:start;padding-top:2px;color:var(--accent);font:600 10px/1.4 var(--mono);letter-spacing:.06em}
-  .portal-copy{min-width:0}
-  .portal-url{display:block;overflow-wrap:anywhere;color:var(--ink);font:600 clamp(15px,2vw,19px)/1.35 var(--mono);letter-spacing:-.035em}
-  .portal-name{display:block;margin-top:6px;color:var(--muted);font-size:13px;line-height:1.35}
-  .portal-arrow{width:32px;height:32px;display:grid;place-items:center;border:1px solid var(--line);border-radius:50%;color:var(--accent);font-size:17px;transition:background .18s,color .18s,border-color .18s}
-  .portal:hover .portal-arrow{border-color:var(--accent);background:var(--accent);color:#fff}
-  .company{--accent:#4C7FA2}.global{--accent:#5079A4}.insight{--accent:#258F8D}.storage{--accent:#B2783B}
-  .page-note{display:flex;align-items:center;gap:8px;margin-top:19px;color:var(--soft);font:10px/1.4 var(--mono);letter-spacing:.02em}
-  .page-note svg{width:13px;height:13px;flex:none}
-  footer{border-top:1px solid var(--line);background:rgba(255,255,255,.6)}
-  footer .wrap{min-height:56px;display:flex;align-items:center;justify-content:space-between;gap:8px 20px;color:var(--soft);font:10px/1.5 var(--mono)}
-  @media (max-width:800px){.portal-url{font-size:14px}}
-  @media (max-width:640px){
-    .wrap{padding:0 18px}
-    .header-row{height:62px}
-    .brand{font-size:20px}
-    .header-meta{font-size:8px;letter-spacing:.08em}
-    main{justify-content:flex-start;padding:48px 0 54px}
-    .intro{margin-bottom:22px}
-    h1{font-size:34px}
-    .intro p:last-child{font-size:14px}
-    .portal-grid{grid-template-columns:1fr;gap:9px}
-    .portal{grid-template-columns:32px minmax(0,1fr) 30px;gap:11px;min-height:92px;padding:14px 14px}
-    .portal::before{top:14px;bottom:14px}
-    .portal-url{font-size:15px}
-    .portal-name{margin-top:3px;font-size:12px}
-    .portal-arrow{width:28px;height:28px}
-    footer .wrap{min-height:52px;font-size:9px}
+  .item::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,var(--glow),transparent 55%);opacity:0;transition:opacity .25s;pointer-events:none}
+  .item:hover{transform:translateX(4px);border-color:var(--edge);box-shadow:0 2px 4px rgba(13,27,30,.04),0 16px 32px -16px var(--shadow)}
+  .item:hover::before{opacity:1}
+  .item:focus-visible{outline:3px solid var(--edge);outline-offset:3px}
+  .icon{
+    position:relative;width:54px;height:54px;border-radius:16px;display:grid;place-items:center;
+    background:var(--grad);box-shadow:0 8px 18px -8px var(--shadow),inset 0 1px 0 rgba(255,255,255,.35);
+    transition:transform .35s cubic-bezier(.34,1.56,.64,1);
   }
-  @media (prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important}}
+  .icon::before{content:"";position:absolute;inset:0;border-radius:inherit;background:linear-gradient(160deg,rgba(255,255,255,.4),transparent 48%)}
+  .icon svg{position:relative;width:30px;height:30px}
+  .item:hover .icon{transform:rotate(-8deg) scale(1.06)}
+  .txt{position:relative;min-width:0}
+  .name{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+  .name b{font-family:var(--display);font-size:16px;font-weight:600;letter-spacing:-.015em}
+  .name small{font-family:var(--mono);font-size:10.5px;font-weight:700;letter-spacing:.14em;color:var(--edge)}
+  .url{margin-top:2px;font-family:var(--mono);font-size:15px;font-weight:600;color:var(--muted);word-break:break-all;transition:color .2s}
+  .item:hover .url{color:var(--ink)}
+  .go{position:relative;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;
+    color:var(--edge);background:var(--soft);transition:background .2s,color .2s}
+  .go svg{width:15px;height:15px}
+  .item:hover .go{background:var(--edge);color:#fff}
+
+  .c-lab{--grad:linear-gradient(140deg,#2DD4BF,#06B6D4 55%,#0E7490);--edge:#0E8C84;--soft:#E3F6F3;--shadow:rgba(6,182,212,.5);--glow:rgba(45,212,191,.10)}
+  .c-glb{--grad:linear-gradient(140deg,#60A5FA,#6366F1 55%,#7C3AED);--edge:#4F46E5;--soft:#ECEBFE;--shadow:rgba(99,102,241,.5);--glow:rgba(99,102,241,.09)}
+  .c-fcg{--grad:linear-gradient(140deg,#FCD34D,#F59E0B 45%,#EF4444);--edge:#D9480F;--soft:#FFF0E3;--shadow:rgba(245,120,11,.5);--glow:rgba(245,158,11,.11)}
+  .c-com{--grad:linear-gradient(140deg,#F472B6,#EC4899 40%,#8B5CF6);--edge:#C026D3;--soft:#FBEAF6;--shadow:rgba(236,72,153,.45);--glow:rgba(236,72,153,.08)}
+
+  .hint{margin-top:14px;font-size:13px;color:var(--dim);display:flex;align-items:center;gap:6px}
+  .hint svg{width:13px;height:13px}
+
+  /* microgrid illustration */
+  .scene{
+    position:relative;display:flex;flex-direction:column;border-radius:28px;padding:18px 16px 14px;min-width:0;overflow:hidden;
+    background:radial-gradient(70% 60% at 50% 48%,#12343A 0%,var(--night-2) 45%,var(--night) 100%);
+    box-shadow:0 2px 4px rgba(13,27,30,.05),0 30px 60px -24px rgba(8,23,26,.55);
+  }
+  .scene::before{
+    content:"";position:absolute;inset:0;pointer-events:none;
+    background-image:radial-gradient(rgba(255,255,255,.08) 1px,transparent 1.3px);background-size:20px 20px;
+    -webkit-mask-image:radial-gradient(65% 65% at 50% 50%,#000,transparent);mask-image:radial-gradient(65% 65% at 50% 50%,#000,transparent);
+  }
+  .scene-head{position:relative;display:flex;justify-content:space-between;align-items:center;gap:10px;padding:2px 6px 4px;color:#fff}
+  .scene-head b{font-size:14px;font-weight:650}
+  .live{white-space:nowrap;flex:none;display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:11px;color:#86A9A6;letter-spacing:.08em}
+  .live::before{content:"";width:7px;height:7px;border-radius:50%;background:#34D399;box-shadow:0 0 0 0 rgba(52,211,153,.7);animation:ping 2s infinite}
+  @keyframes ping{70%{box-shadow:0 0 0 7px rgba(52,211,153,0)}100%{box-shadow:0 0 0 0 rgba(52,211,153,0)}}
+  .scene svg{position:relative;display:block;width:100%;height:auto;flex:1;min-height:0}
+  .lbl{font-family:var(--sans);font-size:14px;font-weight:650;fill:#F2F7F7}
+  .sub{font-family:var(--mono);font-size:9.5px;fill:#7E9C9A;letter-spacing:.08em}
+  .tile{fill:rgba(255,255,255,.045);stroke:rgba(255,255,255,.12)}
+  .wire{fill:none;stroke-width:2.2;stroke-linecap:round;opacity:.45}
+  .spin{transform-box:fill-box;transform-origin:center;animation:spin 6s linear infinite}
+  .spin.fast{animation-duration:1.1s}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  .ring{transform-box:fill-box;transform-origin:center;animation:ring 2.8s ease-out infinite}
+  @keyframes ring{0%{transform:scale(.8);opacity:.9}100%{transform:scale(1.5);opacity:0}}
+  .blink{animation:blink 3s ease-in-out infinite}
+  @keyframes blink{50%{opacity:.25}}
+  .legend{position:relative;display:flex;flex-wrap:wrap;gap:6px 16px;padding:10px 6px 0;font-size:12px;color:#9DB6B4;border-top:1px solid rgba(255,255,255,.08)}
+  .legend span{display:inline-flex;align-items:center;gap:6px}
+  .legend span::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--c)}
+
+
+  /* safety + key figures (open layout, no boxes) */
+  .facts{grid-column:1/-1;display:grid;gap:32px;margin-top:8px;padding-top:32px;border-top:1px solid var(--line)}
+  .safe{display:flex;align-items:flex-start;gap:16px}
+  .shield{flex:none;width:44px;height:44px;border-radius:14px;display:grid;place-items:center;
+    background:linear-gradient(140deg,#6EE7B7,#10B981 50%,#047857);box-shadow:0 10px 22px -10px rgba(16,185,129,.8),inset 0 1px 0 rgba(255,255,255,.35)}
+  .shield svg{width:24px;height:24px}
+  .safe h2{font-family:var(--display);font-size:clamp(18px,2vw,21px);font-weight:700;letter-spacing:-.025em;line-height:1.3}
+  .safe p{margin-top:6px;font-size:14.5px;color:var(--muted);line-height:1.6;max-width:34em}
+  .stats{display:grid;grid-template-columns:repeat(2,1fr);gap:24px 20px}
+  .stat b{display:block;font-family:var(--display);font-weight:700;font-size:clamp(28px,3.2vw,36px);letter-spacing:-.035em;line-height:1;
+    background:var(--g);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .stat b small{font-size:.5em;font-weight:600;letter-spacing:-.01em;margin-left:4px}
+  .stat span{display:block;margin-top:8px;font-size:13px;color:var(--muted);line-height:1.4}
+
+  footer .wrap{display:flex;flex-wrap:wrap;gap:6px 24px;justify-content:space-between;
+    padding-top:18px;padding-bottom:22px;border-top:1px solid var(--line);font-size:13px;color:var(--dim)}
+
+  @media (max-width:560px){.tagline{display:none}.item{gap:12px;padding:12px 12px 12px 12px}.icon{width:48px;height:48px;border-radius:14px}.icon svg{width:26px;height:26px}.url{font-size:14px}.name small{display:none}}
+  @media (min-width:640px){.wrap{padding:0 32px}}
+  @media (min-width:1000px){
+    .facts{grid-template-columns:minmax(0,1fr) minmax(0,1.25fr);gap:56px;align-items:center}
+    .stats{grid-template-columns:repeat(4,1fr)}
+    .layout{grid-template-columns:minmax(0,1fr) minmax(0,1.08fr);gap:56px;align-items:center;padding-top:56px;padding-bottom:48px}
+    .side{justify-content:center}
+  }
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 </head>
 <body>
-<header>
-  <div class="wrap header-row">
-    <a class="brand" href="https://anepower.com" aria-label="Anepower official website">Anepower</a>
-    <span class="header-meta">Platform navigation</span>
+
+<main>
+  <div class="wrap layout">
+    <div class="side">
+      <div class="eyebrow">Solar · Diesel · Storage</div>
+      <h1>Anepower platforms</h1>
+      <p class="lead">Grid-forming microgrids that combine solar, diesel and storage for factories, mines and islands. Choose a portal below.</p>
+
+      <nav class="list" aria-label="Anepower portals">
+        <a class="item c-com" href="https://anepower.com" target="_blank" rel="noopener">
+          <span class="icon"><svg viewBox="0 0 32 32" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 27 V12 L15 6 L24 12 V27"/>
+            <path d="M4 27 H28"/>
+            <path d="M12 27 V20 H18 V27"/>
+            <path d="M11 14 H12.5 M17.5 14 H19"/>
+            <path d="M26 3.5 L26.9 5.6 L29 6.5 L26.9 7.4 L26 9.5 L25.1 7.4 L23 6.5 L25.1 5.6 Z" fill="#fff" stroke="none"/>
+          </svg></span>
+          <span class="txt"><span class="name"><b>Official Website</b><small>COMPANY</small></span><span class="url">anepower.com</span></span>
+          <span class="go"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 11 L11 5 M6 5 H11 V10"/></svg></span>
+        </a>
+
+        <a class="item c-glb" href="https://global.anepower.net" target="_blank" rel="noopener">
+          <span class="icon"><svg viewBox="0 0 32 32" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="16" cy="16" r="9"/>
+            <path d="M7 16 H25 M16 7 C19.5 10 19.5 22 16 25 C12.5 22 12.5 10 16 7"/>
+            <ellipse cx="16" cy="16" rx="14" ry="5.2" transform="rotate(-24 16 16)" stroke-opacity=".75" stroke-width="1.6"/>
+            <circle cx="27.6" cy="10.6" r="2.2" fill="#fff" stroke="none"/>
+          </svg></span>
+          <span class="txt"><span class="name"><b>Global Projects</b><small>GLOBAL</small></span><span class="url">global.anepower.net</span></span>
+          <span class="go"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 11 L11 5 M6 5 H11 V10"/></svg></span>
+        </a>
+
+        <a class="item c-lab" href="https://insight.anepower.net" target="_blank" rel="noopener">
+          <span class="icon"><svg viewBox="0 0 32 32" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 4 H20 M13.5 4 V12.5 L6.8 24.2 A2.4 2.4 0 0 0 8.9 27.8 H23.1 A2.4 2.4 0 0 0 25.2 24.2 L18.5 12.5 V4"/>
+            <path d="M9.4 19.5 H22.6 L25.2 24.2 A2.4 2.4 0 0 1 23.1 27.8 H8.9 A2.4 2.4 0 0 1 6.8 24.2 Z" fill="#fff" fill-opacity=".35" stroke="none"/>
+            <circle cx="14" cy="23" r="1.4" fill="#fff" stroke="none"/><circle cx="18.5" cy="21.8" r="1" fill="#fff" stroke="none"/>
+            <circle cx="24" cy="8" r="1.6" fill="#fff" stroke="none"/><circle cx="26.5" cy="12" r="1" fill="#fff" stroke="none"/>
+          </svg></span>
+          <span class="txt"><span class="name"><b>Data Insight Platform</b><small>INSIGHT</small></span><span class="url">insight.anepower.net</span></span>
+          <span class="go"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 11 L11 5 M6 5 H11 V10"/></svg></span>
+        </a>
+
+        <a class="item c-fcg" href="https://fcg.anepower.net" target="_blank" rel="noopener">
+          <span class="icon"><svg viewBox="0 0 32 32" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="5" y="9" width="20" height="15" rx="3"/>
+            <path d="M25 13.5 H27.5 V19.5 H25"/>
+            <path d="M16.5 11.5 L11.5 17.2 H15.4 L13.6 21.6 L18.8 15.6 H14.9 Z" fill="#fff" stroke-width="1.2"/>
+          </svg></span>
+          <span class="txt"><span class="name"><b>C&amp;I Storage Showcase</b><small>FCG</small></span><span class="url">fcg.anepower.net</span></span>
+          <span class="go"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 11 L11 5 M6 5 H11 V10"/></svg></span>
+        </a>
+      </nav>
+
+      <p class="hint"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3 H13 V7 M13 3 L7 9 M11 10 V13 H3 V5 H6"/></svg>Links open in a new tab</p>
+    </div>
+
+    <div class="scene" id="scene">
+      <div class="scene-head"><b>Grid-Forming Microgrid</b><span class="live">EMS ONLINE</span></div>
+      <svg viewBox="0 0 600 400" role="img" aria-label="Microgrid illustration: solar PV and a diesel generator feed the Anepower EMS, which charges battery storage and powers the load">
+        <defs>
+          <linearGradient id="gSun" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FDE68A"/><stop offset="1" stop-color="#F59E0B"/></linearGradient>
+          <linearGradient id="gPanel" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#60A5FA"/><stop offset="1" stop-color="#1E3A8A"/></linearGradient>
+          <linearGradient id="gGen" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FB923C"/><stop offset="1" stop-color="#C2410C"/></linearGradient>
+          <linearGradient id="gBat" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#059669"/><stop offset="1" stop-color="#6EE7B7"/></linearGradient>
+          <linearGradient id="gLoad" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#67E8F9"/><stop offset="1" stop-color="#0E7490"/></linearGradient>
+          <linearGradient id="gHub" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2DD4BF"/><stop offset="1" stop-color="#0F766E"/></linearGradient>
+          <radialGradient id="gGlow"><stop offset="0" stop-color="#2DD4BF" stop-opacity=".5"/><stop offset="1" stop-color="#2DD4BF" stop-opacity="0"/></radialGradient>
+          <filter id="soft" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="2.2"/></filter>
+          <path id="w1" d="M182,128 C232,150 250,188 262,204"/>
+          <path id="w2" d="M418,128 C368,150 350,188 338,204"/>
+          <path id="w3" d="M262,236 C250,252 232,290 182,312"/>
+          <path id="w4" d="M338,236 C350,252 368,290 418,312"/>
+        </defs>
+
+        <!-- wires -->
+        <use href="#w1" class="wire" stroke="#F59E0B"/>
+        <use href="#w2" class="wire" stroke="#F97316"/>
+        <use href="#w3" class="wire" stroke="#10B981"/>
+        <use href="#w4" class="wire" stroke="#22D3EE"/>
+
+        <!-- energy particles -->
+        <g filter="url(#soft)" opacity=".9">
+          <circle r="5" fill="#FCD34D"><animateMotion dur="2.2s" repeatCount="indefinite"><mpath href="#w1"/></animateMotion></circle>
+          <circle r="5" fill="#FB923C"><animateMotion dur="2.6s" repeatCount="indefinite"><mpath href="#w2"/></animateMotion></circle>
+          <circle r="5" fill="#34D399"><animateMotion dur="2.4s" repeatCount="indefinite"><mpath href="#w3"/></animateMotion></circle>
+          <circle r="5" fill="#67E8F9"><animateMotion dur="2s" repeatCount="indefinite"><mpath href="#w4"/></animateMotion></circle>
+        </g>
+        <g>
+          <circle r="3" fill="#FEF3C7"><animateMotion dur="2.2s" repeatCount="indefinite"><mpath href="#w1"/></animateMotion></circle>
+          <circle r="3" fill="#FEF3C7"><animateMotion dur="2.2s" begin="1.1s" repeatCount="indefinite"><mpath href="#w1"/></animateMotion></circle>
+          <circle r="3" fill="#FFEDD5"><animateMotion dur="2.6s" repeatCount="indefinite"><mpath href="#w2"/></animateMotion></circle>
+          <circle r="3" fill="#FFEDD5"><animateMotion dur="2.6s" begin="1.3s" repeatCount="indefinite"><mpath href="#w2"/></animateMotion></circle>
+          <circle r="3" fill="#D1FAE5"><animateMotion dur="2.4s" repeatCount="indefinite"><mpath href="#w3"/></animateMotion></circle>
+          <circle r="3" fill="#D1FAE5"><animateMotion dur="2.4s" begin="1.2s" repeatCount="indefinite"><mpath href="#w3"/></animateMotion></circle>
+          <circle r="3" fill="#CFFAFE"><animateMotion dur="2s" repeatCount="indefinite"><mpath href="#w4"/></animateMotion></circle>
+          <circle r="3" fill="#CFFAFE"><animateMotion dur="2s" begin="1s" repeatCount="indefinite"><mpath href="#w4"/></animateMotion></circle>
+        </g>
+
+        <!-- EMS hub -->
+        <circle cx="300" cy="220" r="78" fill="url(#gGlow)"/>
+        <circle class="ring" cx="300" cy="220" r="46" fill="none" stroke="#2DD4BF" stroke-width="1.5"/>
+        <rect x="258" y="188" width="84" height="64" rx="16" fill="url(#gHub)" stroke="#5EEAD4" stroke-opacity=".7"/>
+        <g stroke="#99F6E4" stroke-width="1.4" opacity=".55">
+          <path d="M270,188 V181 M285,188 V181 M300,188 V181 M315,188 V181 M330,188 V181"/>
+          <path d="M270,252 V259 M285,252 V259 M300,252 V259 M315,252 V259 M330,252 V259"/>
+        </g>
+        <text x="300" y="217" text-anchor="middle" class="lbl" style="font-size:16px;fill:#fff">EMS</text>
+        <text x="300" y="235" text-anchor="middle" class="sub" style="fill:#CCFBF1">ANEPOWER</text>
+
+        <!-- Solar PV -->
+        <g transform="translate(110,108)">
+          <rect x="-74" y="-62" width="148" height="116" rx="16" class="tile"/>
+          <g class="spin"><g stroke="#FCD34D" stroke-width="2" stroke-linecap="round">
+            <path d="M44,-46 V-50 M44,-18 V-14 M28,-32 H24 M60,-32 H64 M33,-43 L30,-46 M55,-21 L58,-18 M55,-43 L58,-46 M33,-21 L30,-18"/>
+          </g></g>
+          <circle cx="44" cy="-32" r="9" fill="url(#gSun)"/>
+          <polygon points="-44,14 22,14 34,-26 -32,-26" fill="url(#gPanel)" stroke="#93C5FD" stroke-width="1"/>
+          <g stroke="#BFDBFE" stroke-width=".9" opacity=".7">
+            <path d="M-10,-26 L-22,14 M12,-26 L0,14 M-38,-6 L28,-6"/>
+          </g>
+          <path d="M-44,14 L22,14" stroke="#DBEAFE" stroke-width="1.2" opacity=".6"/>
+          <path d="M-12,14 V24 M-20,24 H-4" stroke="#64748B" stroke-width="2" stroke-linecap="round"/>
+          <text x="0" y="42" text-anchor="middle" class="lbl">Solar PV</text>
+        </g>
+
+        <!-- Diesel genset -->
+        <g transform="translate(490,108)">
+          <rect x="-74" y="-62" width="148" height="116" rx="16" class="tile"/>
+          <g fill="#CBD5E1">
+            <circle cx="24" cy="-38" r="5" opacity=".5"><animate attributeName="cy" values="-36;-58" dur="2.4s" repeatCount="indefinite"/><animate attributeName="opacity" values=".55;0" dur="2.4s" repeatCount="indefinite"/><animate attributeName="r" values="4;9" dur="2.4s" repeatCount="indefinite"/></circle>
+            <circle cx="28" cy="-38" r="5" opacity=".5"><animate attributeName="cy" values="-36;-58" dur="2.4s" begin="1.2s" repeatCount="indefinite"/><animate attributeName="opacity" values=".55;0" dur="2.4s" begin="1.2s" repeatCount="indefinite"/><animate attributeName="r" values="4;9" dur="2.4s" begin="1.2s" repeatCount="indefinite"/></circle>
+          </g>
+          <rect x="20" y="-34" width="9" height="16" rx="2" fill="#64748B"/>
+          <rect x="-46" y="-20" width="88" height="38" rx="6" fill="url(#gGen)" stroke="#FDBA74" stroke-width="1"/>
+          <g stroke="#7C2D12" stroke-width="1.4" opacity=".55"><path d="M8,-12 V10 M14,-12 V10 M20,-12 V10 M26,-12 V10 M32,-12 V10"/></g>
+          <circle cx="-22" cy="-1" r="12" fill="#7C2D12" stroke="#FED7AA" stroke-width="1"/>
+          <g class="spin fast"><path d="M-22,-1 L-22,-10 M-22,-1 L-14,3.5 M-22,-1 L-30,3.5" stroke="#FED7AA" stroke-width="2.4" stroke-linecap="round"/></g>
+          <rect x="-46" y="18" width="88" height="5" rx="2" fill="#475569"/>
+          <text x="0" y="42" text-anchor="middle" class="lbl">Diesel Genset</text>
+        </g>
+
+        <!-- Battery storage -->
+        <g transform="translate(110,332)">
+          <rect x="-74" y="-62" width="148" height="116" rx="16" class="tile"/>
+          <g>
+            <rect x="-40" y="-44" width="36" height="62" rx="5" fill="#0B2E28" stroke="#34D399" stroke-opacity=".6"/>
+            <rect x="4" y="-44" width="36" height="62" rx="5" fill="#0B2E28" stroke="#34D399" stroke-opacity=".6"/>
+            <rect x="-34" y="-8" width="24" height="20" rx="2" fill="url(#gBat)"><animate attributeName="y" values="-2;-38;-2" dur="7s" repeatCount="indefinite"/><animate attributeName="height" values="14;50;14" dur="7s" repeatCount="indefinite"/></rect>
+            <rect x="10" y="-20" width="24" height="32" rx="2" fill="url(#gBat)"><animate attributeName="y" values="-20;-38;-6;-20" dur="7s" repeatCount="indefinite"/><animate attributeName="height" values="32;50;18;32" dur="7s" repeatCount="indefinite"/></rect>
+            <g stroke="#0B2E28" stroke-width="2.4"><path d="M-36,-26 H-8 M-36,-14 H-8 M-36,-2 H-8 M8,-26 H36 M8,-14 H36 M8,-2 H36"/></g>
+            <path d="M0,-58 L-7,-46 H-1 L-5,-36 L6,-50 H0 Z" fill="#FDE047" class="blink"/>
+          </g>
+          <text x="0" y="42" text-anchor="middle" class="lbl">Battery Storage</text>
+        </g>
+
+        <!-- Load -->
+        <g transform="translate(490,332)">
+          <rect x="-74" y="-62" width="148" height="116" rx="16" class="tile"/>
+          <path d="M-46,18 V-6 L-30,4 V-6 L-14,4 V-6 L2,4 V-40 H14 V4 H44 V18 Z" fill="url(#gLoad)" stroke="#A5F3FC" stroke-width="1"/>
+          <g fill="#FEF08A">
+            <rect x="-40" y="8" width="6" height="5" rx="1"/>
+            <rect x="-26" y="8" width="6" height="5" rx="1" class="blink" style="animation-delay:.6s"/>
+            <rect x="-10" y="8" width="6" height="5" rx="1"/>
+            <rect x="20" y="8" width="6" height="5" rx="1" class="blink" style="animation-delay:1.4s"/>
+            <rect x="32" y="8" width="6" height="5" rx="1"/>
+            <rect x="5" y="-32" width="6" height="5" rx="1" class="blink" style="animation-delay:2s"/>
+          </g>
+          <text x="0" y="42" text-anchor="middle" class="lbl">Load</text>
+        </g>
+
+              </svg>
+      <div class="legend">
+        <span style="--c:#F59E0B">Solar</span>
+        <span style="--c:#F97316">Diesel</span>
+        <span style="--c:#10B981">Storage</span>
+        <span style="--c:#22D3EE">Load</span>
+      </div>
+    </div>
+    <div class="facts">
+    <section class="safe" aria-label="Storage safety">
+      <span class="shield"><svg viewBox="0 0 32 32" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 3.5 L26 7.5 V15 C26 21.5 21.8 26.3 16 28.5 C10.2 26.3 6 21.5 6 15 V7.5 Z"/><path d="M11.5 16 L14.8 19.3 L20.8 12.8"/></svg></span>
+      <div>
+        <h2>Safety first, from cell to grid.</h2>
+        <p>Our AI watches every battery cell and warns of thermal runaway risk days in advance. If danger rises, the system acts on its own within seconds.</p>
+      </div>
+    </section>
+    <div class="stats" aria-label="Anepower in numbers">
+      <div class="stat" style="--g:linear-gradient(120deg,#0F766E,#14B8A6)"><b>28<small>years</small></b><span>Battery industry experience</span></div>
+      <div class="stat" style="--g:linear-gradient(120deg,#4F46E5,#7C3AED)"><b>3S</b><span>In-house PCS · BMS · EMS</span></div>
+      <div class="stat" style="--g:linear-gradient(120deg,#059669,#10B981)"><b>3<small>GWh</small></b><span>Storage systems shipped</span></div>
+      <div class="stat" style="--g:linear-gradient(120deg,#D9480F,#F59E0B)"><b>1<small>GW</small></b><span>Grid-forming PCS shipped</span></div>
+    </div>
+    </div>
   </div>
-</header>
-<main class="wrap">
-  <section class="intro" aria-labelledby="page-title">
-    <p class="eyebrow">Anepower / Digital platforms</p>
-    <h1 id="page-title">Choose a destination</h1>
-    <p>Quick access to Anepower websites.</p>
-  </section>
-  <nav class="portal-grid" aria-label="Anepower websites">
-    <a class="portal company" href="https://anepower.com" target="_blank" rel="noopener">
-      <span class="portal-index">01</span><span class="portal-copy"><span class="portal-url">anepower.com</span><span class="portal-name">Official Website</span></span><span class="portal-arrow" aria-hidden="true">↗</span>
-    </a>
-    <a class="portal global" href="https://global.anepower.net" target="_blank" rel="noopener">
-      <span class="portal-index">02</span><span class="portal-copy"><span class="portal-url">global.anepower.net</span><span class="portal-name">Global Projects</span></span><span class="portal-arrow" aria-hidden="true">↗</span>
-    </a>
-    <a class="portal insight" href="https://insight.anepower.net" target="_blank" rel="noopener">
-      <span class="portal-index">03</span><span class="portal-copy"><span class="portal-url">insight.anepower.net</span><span class="portal-name">Data Insight Platform</span></span><span class="portal-arrow" aria-hidden="true">↗</span>
-    </a>
-    <a class="portal storage" href="https://fcg.anepower.net" target="_blank" rel="noopener">
-      <span class="portal-index">04</span><span class="portal-copy"><span class="portal-url">fcg.anepower.net</span><span class="portal-name">C&amp;I Storage Showcase</span></span><span class="portal-arrow" aria-hidden="true">↗</span>
-    </a>
-  </nav>
-  <p class="page-note"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 3 H13 V7 M13 3 L7 9 M11 10 V13 H3 V5 H6"/></svg>Each link opens in a new tab.</p>
 </main>
-<footer><div class="wrap"><span>© 2026 Guangzhou Anepower Electric Technology Co., Ltd.</span><span>anepower.net</span></div></footer>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Guangzhou Anepower Electric Technology Co., Ltd.</span>
+    <span>anepower.net</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var s=document.getElementById('scene'), svg=s&&s.querySelector('svg');
+  if(!svg||!svg.pauseAnimations) return;
+  if(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches){svg.pauseAnimations();return;}
+  if('IntersectionObserver' in window){
+    new IntersectionObserver(function(es){es.forEach(function(e){e.isIntersecting?svg.unpauseAnimations():svg.pauseAnimations();});},{threshold:.05}).observe(s);
+  }
+})();
+</script>
 </body>
 </html>
