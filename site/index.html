@@ -84,6 +84,22 @@
   .go svg{width:15px;height:15px}
   .item:hover .go{background:var(--edge);color:#fff}
 
+  .item{grid-template-columns:auto 1fr !important;align-items:start !important;padding:16px 18px 14px 16px !important}
+  .item:hover{transform:none !important}
+  .links{display:grid;gap:4px;margin-top:8px}
+  .lk{position:relative;display:inline-flex;align-items:center;gap:10px;width:fit-content;max-width:100%;padding:4px 10px 4px 4px;border-radius:10px;
+    font-family:var(--mono);font-size:13.5px;font-weight:600;color:var(--muted);transition:background .2s,color .2s}
+  .lk em{flex:none;min-width:58px;text-align:center;font-style:normal;font-family:var(--sans);font-size:10.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+    padding:3px 8px;border-radius:7px}
+  .lk span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .lk .ar{flex:none;width:13px;height:13px;opacity:0;transform:translate(-4px,4px);transition:opacity .2s,transform .2s}
+  .lk:hover{color:var(--ink)}
+  .lk:hover .ar{opacity:1;transform:none}
+  .lk:focus-visible{outline:2px solid var(--edge);outline-offset:2px}
+  .lk-cn em{color:#B91C1C;background:#FEE2E2}
+  .lk-cn:hover{background:#FEF2F2}
+  .lk-gl em{color:#1D4ED8;background:#DBEAFE}
+  .lk-gl:hover{background:#EFF6FF}
   .c-lab{--grad:linear-gradient(140deg,#2DD4BF,#06B6D4 55%,#0E7490);--edge:#0E8C84;--soft:#E3F6F3;--shadow:rgba(6,182,212,.5);--glow:rgba(45,212,191,.10)}
   .c-glb{--grad:linear-gradient(140deg,#60A5FA,#6366F1 55%,#7C3AED);--edge:#4F46E5;--soft:#ECEBFE;--shadow:rgba(99,102,241,.5);--glow:rgba(99,102,241,.09)}
   .c-fcg{--grad:linear-gradient(140deg,#FCD34D,#F59E0B 45%,#EF4444);--edge:#D9480F;--soft:#FFF0E3;--shadow:rgba(245,120,11,.5);--glow:rgba(245,158,11,.11)}
@@ -163,7 +179,7 @@
       <p class="lead">Grid-forming microgrids that combine solar, diesel and storage for factories, mines and islands. Choose a portal below.</p>
 
       <nav class="list" aria-label="Anepower portals">
-        <a class="item c-com" href="https://anepower.com" target="_blank" rel="noopener">
+        <div class="item c-com">
           <span class="icon"><svg viewBox="0 0 32 32" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M6 27 V12 L15 6 L24 12 V27"/>
             <path d="M4 27 H28"/>
@@ -171,41 +187,37 @@
             <path d="M11 14 H12.5 M17.5 14 H19"/>
             <path d="M26 3.5 L26.9 5.6 L29 6.5 L26.9 7.4 L26 9.5 L25.1 7.4 L23 6.5 L25.1 5.6 Z" fill="#fff" stroke="none"/>
           </svg></span>
-          <span class="txt"><span class="name"><b>Official Website</b><small>COMPANY</small></span><span class="url">anepower.com</span></span>
-          <span class="go"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 11 L11 5 M6 5 H11 V10"/></svg></span>
-        </a>
+          <div class="txt"><div class="name"><b>Official Website</b><small>COMPANY</small></div><div class="links"><a class="lk lk-gl" href="https://anepower.com" target="_blank" rel="noopener"><em>Global</em><span>anepower.com</span><svg class="ar" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 11 L11 5 M6 5 H11 V10"/></svg></a></div></div>
+        </div>
 
-        <a class="item c-glb" href="https://global.anepower.net" target="_blank" rel="noopener">
+        <div class="item c-glb">
           <span class="icon"><svg viewBox="0 0 32 32" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <circle cx="16" cy="16" r="9"/>
             <path d="M7 16 H25 M16 7 C19.5 10 19.5 22 16 25 C12.5 22 12.5 10 16 7"/>
             <ellipse cx="16" cy="16" rx="14" ry="5.2" transform="rotate(-24 16 16)" stroke-opacity=".75" stroke-width="1.6"/>
             <circle cx="27.6" cy="10.6" r="2.2" fill="#fff" stroke="none"/>
           </svg></span>
-          <span class="txt"><span class="name"><b>Global Projects</b><small>GLOBAL</small></span><span class="url">global.anepower.net</span></span>
-          <span class="go"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 11 L11 5 M6 5 H11 V10"/></svg></span>
-        </a>
+          <div class="txt"><div class="name"><b>Global Energy Projects</b><small>GLOBAL</small></div><div class="links"><a class="lk lk-cn" href="http://119.91.204.13:4000" target="_blank" rel="noopener"><em>China</em><span>119.91.204.13:4000</span><svg class="ar" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 11 L11 5 M6 5 H11 V10"/></svg></a><a class="lk lk-gl" href="https://global.anepower.net" target="_blank" rel="noopener"><em>Global</em><span>global.anepower.net</span><svg class="ar" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 11 L11 5 M6 5 H11 V10"/></svg></a></div></div>
+        </div>
 
-        <a class="item c-lab" href="https://insight.anepower.net" target="_blank" rel="noopener">
+        <div class="item c-lab">
           <span class="icon"><svg viewBox="0 0 32 32" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M12 4 H20 M13.5 4 V12.5 L6.8 24.2 A2.4 2.4 0 0 0 8.9 27.8 H23.1 A2.4 2.4 0 0 0 25.2 24.2 L18.5 12.5 V4"/>
             <path d="M9.4 19.5 H22.6 L25.2 24.2 A2.4 2.4 0 0 1 23.1 27.8 H8.9 A2.4 2.4 0 0 1 6.8 24.2 Z" fill="#fff" fill-opacity=".35" stroke="none"/>
             <circle cx="14" cy="23" r="1.4" fill="#fff" stroke="none"/><circle cx="18.5" cy="21.8" r="1" fill="#fff" stroke="none"/>
             <circle cx="24" cy="8" r="1.6" fill="#fff" stroke="none"/><circle cx="26.5" cy="12" r="1" fill="#fff" stroke="none"/>
           </svg></span>
-          <span class="txt"><span class="name"><b>Data Insight Platform</b><small>INSIGHT</small></span><span class="url">insight.anepower.net</span></span>
-          <span class="go"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 11 L11 5 M6 5 H11 V10"/></svg></span>
-        </a>
+          <div class="txt"><div class="name"><b>Data Insight Platform</b><small>INSIGHT</small></div><div class="links"><a class="lk lk-cn" href="http://119.91.204.13:3000" target="_blank" rel="noopener"><em>China</em><span>119.91.204.13:3000</span><svg class="ar" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 11 L11 5 M6 5 H11 V10"/></svg></a><a class="lk lk-gl" href="https://insight.anepower.net" target="_blank" rel="noopener"><em>Global</em><span>insight.anepower.net</span><svg class="ar" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 11 L11 5 M6 5 H11 V10"/></svg></a></div></div>
+        </div>
 
-        <a class="item c-fcg" href="https://fcg.anepower.net" target="_blank" rel="noopener">
+        <div class="item c-fcg">
           <span class="icon"><svg viewBox="0 0 32 32" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <rect x="5" y="9" width="20" height="15" rx="3"/>
             <path d="M25 13.5 H27.5 V19.5 H25"/>
             <path d="M16.5 11.5 L11.5 17.2 H15.4 L13.6 21.6 L18.8 15.6 H14.9 Z" fill="#fff" stroke-width="1.2"/>
           </svg></span>
-          <span class="txt"><span class="name"><b>C&amp;I Storage Showcase</b><small>FCG</small></span><span class="url">fcg.anepower.net</span></span>
-          <span class="go"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 11 L11 5 M6 5 H11 V10"/></svg></span>
-        </a>
+          <div class="txt"><div class="name"><b>C&amp;I Storage Showcase</b><small>FCG</small></div><div class="links"><a class="lk lk-cn" href="http://119.91.204.13:3001" target="_blank" rel="noopener"><em>China</em><span>119.91.204.13:3001</span><svg class="ar" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 11 L11 5 M6 5 H11 V10"/></svg></a><a class="lk lk-gl" href="https://fcg.anepower.net" target="_blank" rel="noopener"><em>Global</em><span>fcg.anepower.net</span><svg class="ar" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 11 L11 5 M6 5 H11 V10"/></svg></a></div></div>
+        </div>
       </nav>
 
       <p class="hint"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3 H13 V7 M13 3 L7 9 M11 10 V13 H3 V5 H6"/></svg>Links open in a new tab</p>
